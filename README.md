@@ -4,7 +4,7 @@ Guide to build MDM Service.
 [TOC]
 
 ## 基本理念
-英文好而且感兴趣的童鞋可以看下本仓库根目录的`BH_US_11_Schuetz_InsideAppleMDM_WP]`
+英文好而且感兴趣的童鞋可以看下本仓库根目录的`BH_US_11_Schuetz_InsideAppleMDM_WP`
 摘抄书本主要内容：
 >This paper describes how Apple’s MDM system works.
 It details the method by which an MDM server initiates a connection to a managed device, how the device enrolls with the server, and the various commands available to the system. Full parameters are provided for each command, as well as details for specialized responses from the device. Finally, source code is provided for a very simple MDM server, that will permit basic experimentation with the MDM protocol using actual iOS devices.
@@ -48,7 +48,7 @@ MDM 简历链接书中截图：
 完成之后可以进行下一步。
 
 ### 2. 本地操作
-#### i. 创建科技
+#### i. 创建csr
 在钥匙串点击左上角菜单
 
 `钥匙串访问`->`证书助理`->`从证书颁发机构请求证书`
@@ -64,6 +64,7 @@ MDM 简历链接书中截图：
 右键，导出，保存为xx_vender.p12，填写.p12使用密码[记住]
 现在文件夹下面有2个文件：
 > CertificateSigningRequest.certSigningRequest
+
 > xx_vender.p12
 
 >为简化步骤，我们使用 mdm_vendor_sign.py 对 customer 的 csr 进行签名，因此需要将私钥导出为 pem 格式（.key文件）
@@ -100,9 +101,14 @@ sudo pip install virtualenv
 git clone https://github.com/AstonZ/iOS_MDM_Guide.git
 ```
 
-#### iii. 进入代码仓库文件夹，安装项目依赖：
+#### iii. 进入代码仓库文件夹，在虚拟环境中安装依赖：
 ```
 cd MDM_Server/
+创建虚拟环境
+virtualenv --python=/usr/bin/python2.7 venv
+激活虚拟环境
+source venv/bin/activate
+安装依赖
 pip install -r requirements.txt
 ```
 

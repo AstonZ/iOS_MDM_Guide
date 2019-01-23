@@ -16,6 +16,7 @@ def generate_plist_encoded():
         local('source venv/bin/activate')
         cmd = 'python mdm_vendor_sign.py  --csr {} --key {} --mdm {}'.format(user_submitted_CSR, mdm_vendor_private_key, mdm_certificate_from_apple)
         local(cmd)
+        local('deactivate')
 
 
 
