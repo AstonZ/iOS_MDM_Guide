@@ -28,30 +28,33 @@ MDM 简历链接书中截图：
 
 ## 一、申请证书
 
-### 1. 申请成为MDM Vender
+### 1. 申请成为MDM Vendor
 没有专用于开通功能的网页，需要发送消息给`苹果开发者支持中心`。
 链接地址：
 [苹果开发者支持中心](https://developer.apple.com/contact/submit/)
 
 **注意**：一定要用Team Agent权限登陆账号申请，Admin权限是会被Apple拒绝的，而且白等半天。
 
-我的填写：
+内容就随便写写了：
 ![](./images/apply_vender.png)
 
 提交之后会受到邮件提醒，苹果会在1~2个工作日给予答复。
 
-我等了XX。
+下午3点发出申请，第二天早上9点半得到回复，速度还OK。
 答复如下：
+****
+根据您的需求，已为您启用您账号的MDM Vendor.
+****
+完成之后可以进行下一步。
 
-完成之后可以进行下一步
 ### 2. 本地操作
-#### i. 创建证书申请
+#### i. 创建科技
 在钥匙串点击左上角菜单
 
 `钥匙串访问`->`证书助理`->`从证书颁发机构请求证书`
 
 填写信息：
-记住常用名称，我填的是'公司简称_MDM_个人名'，查询公私钥会用到
+记住常用名称，我填的是'公司简称_MDM_vendor'，查询公私钥会用到
 ![](images/signing_request.png)
 保存到MDM/Cer文件夹。
 
@@ -60,25 +63,68 @@ MDM 简历链接书中截图：
 ![](images/find_crq_pri_key.png)
 右键，导出，保存为xx_vender.p12，填写.p12使用密码[记住]
 现在文件夹下面有2个文件：
-> CertificateSigningRequest.certSigningRequest.
+> CertificateSigningRequest.certSigningRequest
 > xx_vender.p12
 
->注意，如果使用 mdm_vendor_sign.py 对 customer 的 csr 进行签名，则需要将私钥导出为 pem 格式（.key文件）：
-
+>为简化步骤，我们使用 mdm_vendor_sign.py 对 customer 的 csr 进行签名，因此需要将私钥导出为 pem 格式（.key文件）
 ``` command line
 openssl pkcs12 -in xx_vender.p12 -nocerts -out xx_vender.key
 ```
 执行过程中会让输入3次密码：
 * 第一次：.p12的使用密码。
 * 第二次：创建.key的使用密码。
-* 第三次：确认.key的使用密码。
+* 第三次：确认.key的使用密码[*记住*]。
 
 通过之后，文件夹下面会多出一个文件:
 > xx_vender.key
 
-### iii. 制作证书
+### 3. 制作证书
+登陆[苹果开发者中心](https://developer.apple.com/account/ios/certificate/)
 
+在Certificate栏目下，点击[+], 添加证书：
+苹果开通MDM Vendor功能之后就可以看到这一项了：
+![](images/add_mdm_cer_portal.png)
 
+选择步骤2.ii 创建的CSR，生成并下载mdm.cer保存，尽量跟上一步的文件放在一起。
+
+### 4. 生成plist_encoded文件。
+接下来还有步骤蛮多的生成MDM_Customer的证书及从apple CA验证，和生成plist_encoded文件的工作，幸运的是，有大佬已经把步骤用python脚本实现了，[原文GitHub链接](https://github.com/grinich/mdmvendorsign)。我已经把代码整合进该仓库，使用fabric简化了一点点使用方式, 没有接触过python的iOS也可以几乎无碍搞定，mac本机也有python2.7环境，需要安装一下pip和virtualenv。 pip相当于iOS的pod，包管理工具。virtualenv可以认为是语言版本管理+podfile，完成类似指定该项目使用swift4.0或者swift3.0，及管理该项目依赖包的工具。
+#### i. Mac 安装环境依赖:
+```
+easy_install pip
+sudo pip install virtualenv
+```
+
+#### ii. 然后clone本仓库所有文件:
+```
+git clone https://github.com/AstonZ/iOS_MDM_Guide.git
+```
+
+#### iii. 进入代码仓库文件夹，安装项目依赖：
+```
+cd MDM_Server/
+pip install -r requirements.txt
+```
+
+#### iv. 修改文件配置
+编辑fabfile文件
+```
+cer_dir = '步骤2 生成的xx.csr、xx.key、mdm.cer等文件所在目录'
+
+user_submitted_CSR = os.path.join(cer_dir, 'csr文件名')
+mdm_vendor_private_key = os.path.join(cer_dir, 'key文件名')
+mdm_certificate_from_apple = os.path.join(cer_dir, 'mdm.cer')
+```
+
+#### v. 执行命令
+```
+fab generate_plist_encoded
+```
+可以看到控制台输出:
+![](images/gender_plist.png)
+期间需要输入两次密码，即上一步骤设置的csr的密码和key的密码。
+
+执行完成，项目目录会出现plist_encoded文件，这个就是我们要上传给apple的最终文件。
 
 
 ## 参考链接
