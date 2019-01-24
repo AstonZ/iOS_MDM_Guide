@@ -1,7 +1,15 @@
 from fabric.api import *
 import os
 
-work_dir = os.getcwd()
+env.hosts = '47.107.184.22'
+env.password = 'Wocao9988'
+env.user = 'root'
+env.port = '22'
+
+local_work_dir = os.getcwd()
+remote_git_dir = '/root/Liam/Projects/MDM/iOS_MDM_Guide'
+remote_work_dir = '/root/Liam/Projects/MDM/iOS_MDM_Guide/MDM_Server'
+remote_tmp_dir = '/root/Liam/Projects/MDM/tmp'
 
 # replace it with the dir path where csr, key and mdm.cer locate.
 cer_dir = '/Users/AstonWorkMac/Desktop/PAFiles/tech_requirements/MDM/Cer/'
@@ -12,7 +20,7 @@ mdm_vendor_private_key = os.path.join(cer_dir, 'PAPH_MDM_ZHANGLIANG203_vender.ke
 mdm_certificate_from_apple = os.path.join(cer_dir, 'mdm.cer')
 
 def generate_plist_encoded():
-    with lcd(work_dir):
+    with lcd(local_work_dir):
         local('source venv/bin/activate')
         cmd = 'python mdm_vendor_sign.py  --csr {} --key {} --mdm {}'.format(user_submitted_CSR, mdm_vendor_private_key, mdm_certificate_from_apple)
         local(cmd)
@@ -30,6 +38,11 @@ def client_ssl_call_server():
         print('Error: client crt not found !')
         return
     local('curl --cert {} --key {} https://0.0.0.0:8800/'.format(pub_key,pri_key))
+
+def push_files():
+    l_path = '../../tmp/upload.zip'
+    server_path = os.path.join(remote_tmp_dir, 'upload.zip')
+    put(l_path, server_path)
 
 
 
