@@ -1,0 +1,32 @@
+01/23/2019 17:04:48 PM - INFO -  * Running on https://0.0.0.0:8800/ (Press CTRL+C to quit)
+01/23/2019 17:04:48 PM - INFO -  * Restarting with stat
+01/23/2019 17:04:49 PM - WARNING -  * Debugger is active!
+01/23/2019 17:04:49 PM - INFO -  * Debugger PIN: 610-463-221
+01/23/2019 17:05:06 PM - DEBUG - get device enroll
+01/23/2019 17:05:06 PM - INFO - 127.0.0.1 - - [23/Jan/2019 17:05:06] "GET /device_enroll HTTP/1.1" 200 -
+01/23/2019 17:05:48 PM - INFO -  * Detected change in '/Users/AstonWorkMac/Desktop/PAFiles/tech_requirements/MDM/iOS_MDM_Guide/MDM_Server/app.py', reloading
+01/23/2019 17:05:49 PM - INFO -  * Restarting with stat
+01/23/2019 17:05:49 PM - WARNING -  * Debugger is active!
+01/23/2019 17:05:49 PM - INFO -  * Debugger PIN: 610-463-221
+01/23/2019 17:12:29 PM - INFO - 127.0.0.1 - - [23/Jan/2019 17:12:29] "GET / HTTP/1.1" 200 -
+01/23/2019 17:12:29 PM - INFO - 127.0.0.1 - - [23/Jan/2019 17:12:29] "GET /favicon.ico HTTP/1.1" 404 -
+01/23/2019 17:17:20 PM - INFO - 127.0.0.1 - - [23/Jan/2019 17:17:20] "GET / HTTP/1.1" 200 -
+01/23/2019 17:22:05 PM - INFO - 127.0.0.1 - - [23/Jan/2019 17:22:05] "GET /MDMServiceConfig HTTP/1.1" 404 -
+01/23/2019 17:22:05 PM - DEBUG - get device enroll
+01/23/2019 17:22:05 PM - INFO - 127.0.0.1 - - [23/Jan/2019 17:22:05] "GET /device_enroll HTTP/1.1" 200 -
+01/23/2019 17:24:31 PM - INFO -  * Running on https://0.0.0.0:8800/ (Press CTRL+C to quit)
+01/23/2019 17:24:31 PM - INFO -  * Restarting with stat
+01/23/2019 17:24:31 PM - WARNING -  * Debugger is active!
+01/23/2019 17:24:31 PM - INFO -  * Debugger PIN: 610-463-221
+01/23/2019 18:01:03 PM - INFO -  * Detected change in '/Users/AstonWorkMac/Desktop/PAFiles/tech_requirements/MDM/iOS_MDM_Guide/MDM_Server/app.py', reloading
+01/23/2019 18:01:03 PM - INFO -  * Restarting with stat
+01/23/2019 18:01:03 PM - DEBUG - ../../https/server/server.crt is not exitst !
+01/23/2019 18:01:41 PM - INFO -  * Running on https://0.0.0.0:8800/ (Press CTRL+C to quit)
+01/23/2019 18:01:41 PM - INFO -  * Restarting with stat
+01/23/2019 18:01:42 PM - WARNING -  * Debugger is active!
+01/23/2019 18:01:42 PM - INFO -  * Debugger PIN: 610-463-221
+01/23/2019 18:02:01 PM - INFO - 127.0.0.1 - - [23/Jan/2019 18:02:01] "GET / HTTP/1.1" 200 -
+01/23/2019 19:59:12 PM - INFO -  * Running on https://0.0.0.0:8800/ (Press CTRL+C to quit)
+01/23/2019 19:59:12 PM - INFO -  * Restarting with stat
+01/23/2019 19:59:13 PM - WARNING -  * Debugger is active!
+01/23/2019 19:59:13 PM - INFO -  * Debugger PIN: 610-463-221

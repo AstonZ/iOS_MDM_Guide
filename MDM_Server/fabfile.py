@@ -19,8 +19,21 @@ def generate_plist_encoded():
         local('deactivate')
 
 
+def server_index():
+    local('curl -k https://0.0.0.0:8800/')
 
 
+def client_ssl_call_server():
+    pub_key = '../../https/client/client_public_key.pem'
+    pri_key = '../../https/client/client_private_key.pem'
+    if not os.path.exists(pub_key):
+        print('Error: client crt not found !')
+        return
+    local('curl --cert {} --key {} https://0.0.0.0:8800/'.format(pub_key,pri_key))
+
+
+
+# params in api.env
 # disable_known_hosts
 # effective_roles
 # tasks

@@ -26,7 +26,7 @@ MDM 简历链接书中截图：
 
 ## 基本条件
 
-## 一、申请证书
+## 一、证书及上传文件准备。
 
 ### 1. 申请成为MDM Vendor
 没有专用于开通功能的网页，需要发送消息给`苹果开发者支持中心`。
@@ -126,20 +126,67 @@ mdm_certificate_from_apple = os.path.join(cer_dir, 'mdm.cer')
 ```
 fab generate_plist_encoded
 ```
+
 可以看到控制台输出:
 ![](images/gender_plist.png)
 期间需要输入两次密码，即上一步骤设置的csr的密码和key的密码。
 
-执行完成，项目目录会出现plist_encoded文件，这个就是我们要上传给apple的最终文件。
+执行完成，该项目目录会出现plist_encoded文件，这个就是我们要上传给apple的最终文件。
 
+
+## 二、创建APNs
+登陆[Apple Push Certificates Portal](https://identity.apple.com/pushcert/)
+点击 `Create a Certificate`
+
+下载保存为：XXX_MDM_APNs
+双击打开钥匙串，看看到该证书名为“APSP:xxxx-xxxx”，如下图所示
+
+钥匙传中打开证书，查看详细信息：
+记录以下2项：
+com.apple.xxxx
+常用名称：xxxx
+
+## 三、生成mobileconfig文件
+介绍:
+使用工具：APP Configurator 2
+[APP Store下载链接](https://itunes.apple.com/cn/app/apple-configurator-2/id1037126344?mt=12)
+
+准备MDM Server 与Mobile之间https通讯自签名证书：
+其中CommonName就是在keychain里的证书名称，不要填写一样的，注意区分。
+
+
+##四、本地搭建MDM Server
+代码在MDM_Server/app.py
+首先把上一步生成的https证书的server.crt 和server.key拷贝到合适目录。
+修改一下代码到对应存放目录：
+
+```
+    crt_path = '../../ssl/server.crt'
+    key_path = '../../ssl/server.key'
+```
+
+查询下8800端口是否被占用，没有任何输出即没有占用。
+如果被占用再改个端口号，记得修改app.run的port。
+```
+lsof -i tcp:8800
+```
+运行本地服务测试一下:
+```
+python app.py
+```
 
 ## 参考链接
+[Apple MDM 部署参考](https://help.apple.com/deployment/ios/#/ior7ba06c270)
+[Apple MDM Protocol Reference](https://developer.apple.com/business/documentation/MDM-Protocol-Reference.pdf)
 [iOS设备MDM证书申请流程 2015-07-09 悠哉-辰](https://blog.csdn.net/fobhappy/article/details/46819857)
 
 [iOS MDM详解 2017-04-28 Light413](https://www.jianshu.com/p/6112050ea31a)
 
+[OpenSSL 1.0.0生成p12、jks、crt等格式证书的命令个过程](https://www.cnblogs.com/bluestorm/archive/2013/06/26/3155945.html)
 
-
+[申请StartSSL证书](http://www.mbaike.net/mdm/7.html)
+[创建一个简单的 MDM 服务器(1) Java Tomcat](https://blog.csdn.net/kmyhy/article/details/25287303)
+[OS X Server](https://www.apple.com/cn/osx/server/servers-made-easy/)
 
 
 
