@@ -88,8 +88,8 @@ def py_sign():
         local(cmd)
 
 def push_files():
-    l_path = '../../tmp/ali_mdm_cer/MDM_local_test_signed.mobileconfig'
-    s_file_name = 'MDM_local_test_signed.mobileconfig'
+    l_path = '../../tmp/ali_mdm_cer/Host_MDM_local_test_signed.mobileconfig'
+    s_file_name = 'Host_MDM_local_test_signed.mobileconfig'
     server_path = os.path.join(remote_tmp_dir, s_file_name)
     put(l_path, server_path)
     if s_file_name.endswith('zip'):
