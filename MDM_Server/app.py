@@ -101,6 +101,30 @@ def download_profile():
     # response.headers["Content-Disposition"] = "attachment; filename={}".format(file_name.encode().decode('latin-1'))
     return response
 
+@app.route('/signed_profile', methods=['GET'])
+def download_profile():
+    # os.getcwd()
+    dlog('/download_profile called')
+    params = None
+    if request.json:
+        params = request.json
+        dlog('params from json')
+    elif request.args:
+        params = request.args
+        dlog('params from args')
+    elif request.form:
+        params = request.form
+        dlog('params from form')
+    if not params:
+        dlog('there is no data')
+        params = {'data': 'none'}
+    dlog(params)
+    dlog('donwnloading profile')
+    filename = 'MDM_local_test_signed.mobileconfig'
+    response = send_from_directory('../../profile/', filename, as_attachment=True)
+    # response.headers["Content-Disposition"] = "attachment; filename={}".format(file_name.encode().decode('latin-1'))
+    return response
+
 # if __name__ == '__main__':
 #     start_logging('mdm_server')
 #     dlog(' server started !')
