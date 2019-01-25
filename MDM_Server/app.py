@@ -126,7 +126,6 @@ def download_signed_profile():
     return response
 
 
-
 @app.route('/hs')
 def host_cer_signed_profile():
     # os.getcwd()
@@ -148,7 +147,30 @@ def host_cer_signed_profile():
     dlog('donwnloading signed profile')
     filename = 'Host_MDM_local_test_signed.mobileconfig'
     response = send_from_directory('../../profile/', filename, as_attachment=True)
-    # response.headers["Content-Disposition"] = "attachment; filename={}".format(file_name.encode().decode('latin-1'))
+    return response
+
+
+@app.route('/hse')
+def host_signed_encript():
+       # os.getcwd()
+    dlog('/host_signed_encript called')
+    params = None
+    if request.json:
+        params = request.json
+        dlog('params from json')
+    elif request.args:
+        params = request.args
+        dlog('params from args')
+    elif request.form:
+        params = request.form
+        dlog('params from form')
+    if not params:
+        dlog('there is no data')
+        params = {'data': 'none'}
+    dlog(params)
+    dlog('donwnloading host_signed_encript profile')
+    filename = 'Sign_Encript_MDM_local_test_signed.mobileconfig'
+    response = send_from_directory('../../profile/', filename, as_attachment=True)
     return response
 
 # if __name__ == '__main__':
