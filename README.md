@@ -164,6 +164,19 @@ com.apple.xxxx
     crt_path = '../../ssl/server.crt'
     key_path = '../../ssl/server.key'
 ```
+## 阿里云申请nginx证书
+
+### 用pem和key导出p12
+
+### 导出为服务器证书签名的机构证书
+1. 查看签名机构
+2. 到钥匙串中找到
+3. 导出到同一文件夹
+
+
+```
+openssl pkcs12 -export -in Cert.pem -out Cert.p12 -inkey key.pem
+```
 
 查询下8800端口是否被占用，没有任何输出即没有占用。
 如果被占用再改个端口号，记得修改app.run的port。
@@ -187,7 +200,7 @@ python app.py
 [申请StartSSL证书](http://www.mbaike.net/mdm/7.html)
 [创建一个简单的 MDM 服务器(1) Java Tomcat](https://blog.csdn.net/kmyhy/article/details/25287303)
 [OS X Server](https://www.apple.com/cn/osx/server/servers-made-easy/)
-
+[Sign Profile](https://github.com/nmcspadden/ProfileSigner)
 
 
 
