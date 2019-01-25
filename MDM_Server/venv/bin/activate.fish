@@ -1,4 +1,4 @@
-# This file must be used using `. bin/activate.fish` *within a running fish ( http://fishshell.com ) session*.
+# This file must be used using `source bin/activate.fish` *within a running fish ( http://fishshell.com ) session*.
 # Do not run it directly.
 
 function deactivate -d 'Exit virtualenv mode and return to the normal environment.'
@@ -36,7 +36,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/AstonWorkMac/Desktop/PAFiles/tech_requirements/MDM/iOS_MDM_Guide/MDM_Server/venv"
+set -gx VIRTUAL_ENV "/root/Liam/Projects/MDM/iOS_MDM_Guide/MDM_Server/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

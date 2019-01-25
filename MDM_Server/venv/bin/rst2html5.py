@@ -1,4 +1,4 @@
-#!/Users/AstonWorkMac/Desktop/PAFiles/tech_requirements/MDM/iOS_MDM_Guide/MDM_Server/venv/bin/python
+#!/root/Liam/Projects/MDM/iOS_MDM_Guide/MDM_Server/venv/bin/python2.7
 # -*- coding: utf8 -*-
 # :Copyright: © 2015 Günter Milde.
 # :License: Released under the terms of the `2-Clause BSD license`_, in short:

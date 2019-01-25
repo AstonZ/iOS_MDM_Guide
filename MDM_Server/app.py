@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify, send_from_directory
 import os, logging
 from log_util2 import start_logging, dlog
 
+start_logging('mdm')
 app = Flask(__name__)
 
 @app.route('/')
@@ -97,12 +98,15 @@ def download_profile():
     dlog('donwnloading profile')
     return send_from_directory('../../profile/', 'MDM_local_test.mobileconfig')
 
-if __name__ == '__main__':
-    start_logging('mdm_server')
+# if __name__ == '__main__':
+#     start_logging('mdm_server')
+#     dlog(' server started !')
+#     pass
     # 安全起见没有放在仓库
-    crt_path = '../../https/server/server-cert.cer'
-    key_path = '../../https/server/server-key.key'
-    if not os.path.exists(crt_path):
-        dlog(crt_path + ' is not exitst !')
-        raise ValueError(10000, 'pem_path is not exitst')
-    app.run('0.0.0.0', debug=True, port=8800, ssl_context=(crt_path, key_path))
+    # crt_path = '../../https/server/server-cert.cer'
+    # key_path = '../../https/server/server-key.key'
+    # ssl_contex=(crt_path, key_path)
+    # if not os.path.exists(crt_path):
+    #     dlog(crt_path + ' is not exitst !')
+    #     raise ValueError(10000, 'pem_path is not exitst')
+    # app.run('0.0.0.0', debug=True, port=8800)

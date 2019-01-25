@@ -2,3 +2,5 @@ web.py
 APNSWrapper
 fabric==1.14.0
 flask
+gunicorn==19.7.1
+gevent
