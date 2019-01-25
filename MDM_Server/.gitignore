@@ -1,3 +1,4 @@
 fabfile.py
 logs/*.log
 venv/*
+*.pyc

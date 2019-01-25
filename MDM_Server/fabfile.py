@@ -1,3 +1,4 @@
+# encoding=utf-8
 from fabric.api import *
 import os
 
@@ -37,7 +38,7 @@ def up_remote():
         run('source venv/bin/activate')
         run('sh boot_dev.sh')
 
-def push_up_remove(msg):
+def push_up_remote(msg):
     cmt_push(msg)
     up_remote()
 
@@ -61,10 +62,41 @@ def client_ssl_call_server():
         return
     local('curl --cert {} --key {} https://0.0.0.0:8800/'.format(pub_key,pri_key))
 
+def sign_profile():
+    with lcd('../../tmp/ali_mdm_cer/'):
+        params = {
+                "profile" : 'MDM_local_test.mobileconfig',
+                "server_crt" : 'mdm_ng.pem',
+                "server_key" : 'mdm_ng.key',
+                "cert_chain_cert" : 'ca_chain.cer',
+                "signed_profile": 'MDM_local_test_signed.mobileconfig'
+        }
+        local('ls')
+        cmd = 'openssl smime -sign -in {profile} -out {signed_profile} -signer {server_crt} -inkey {server_key} -certfile {cert_chain_cert} -outform der -nodetach'.format(**params)
+        print cmd
+        local(cmd)
+
+def py_sign():
+    with lcd('../../tmp/ali_mdm_cer/'):
+        params = {
+                "profile" : 'MDM_local_test.mobileconfig',
+                "signed_profile": 'MDM_local_test_signed.mobileconfig',
+                "ph_dev_cer_name": 'iPhone Developer: 海锋 蒲 (Q4DAB6L47P)'
+        }
+        cmd = 'python ./profile_signer.py -n "{ph_dev_cer_name}" sign {profile} {signed_profile}'.format(**params)
+        print cmd
+        local(cmd)
+
 def push_files():
-    l_path = '../../tmp/1773945_mdm.bleuhotel.com_nginx.zip'
-    server_path = os.path.join(remote_tmp_dir, '1773945_mdm.bleuhotel.com_nginx.zip')
+    l_path = '../../tmp/ali_mdm_cer/MDM_local_test_signed.mobileconfig'
+    s_file_name = 'MDM_local_test_signed.mobileconfig'
+    server_path = os.path.join(remote_tmp_dir, s_file_name)
     put(l_path, server_path)
+    if s_file_name.endswith('zip'):
+        with cd(remote_tmp_dir):
+            run('unzip {}'.format(s_file_name))
+
+
 
 
 
