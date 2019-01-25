@@ -1,4 +1,4 @@
-#!/Users/AstonWorkMac/Desktop/PAFiles/tech_requirements/MDM/iOS_MDM_Guide/MDM_Server/venv/bin/python
+#!/root/Liam/Projects/MDM/iOS_MDM_Guide/MDM_Server/venv/bin/python2.7
 
 # Author: 
 # Contact: grubert@users.sf.net
