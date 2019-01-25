@@ -96,7 +96,10 @@ def download_profile():
         params = {'data': 'none'}
     dlog(params)
     dlog('donwnloading profile')
-    return send_from_directory('../../profile/', 'MDM_local_test.mobileconfig')
+    filename = 'MDM_local_test.mobileconfig'
+    response = send_from_directory('../../profile/', filename, as_attachment=True)
+    # response.headers["Content-Disposition"] = "attachment; filename={}".format(file_name.encode().decode('latin-1'))
+    return response
 
 # if __name__ == '__main__':
 #     start_logging('mdm_server')

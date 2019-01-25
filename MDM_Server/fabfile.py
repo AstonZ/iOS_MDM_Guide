@@ -19,6 +19,23 @@ user_submitted_CSR = os.path.join(cer_dir, 'CertificateSigningRequest.certSignin
 mdm_vendor_private_key = os.path.join(cer_dir, 'PAPH_MDM_ZHANGLIANG203_vender.key')
 mdm_certificate_from_apple = os.path.join(cer_dir, 'mdm.cer')
 
+
+def cmt_push(msg):
+    with lcd(local_work_dir):
+        local('git add -A .')
+        local('git commit -m "{}"'.format(msg))
+        local('git push origin master')
+
+def up_remote():
+    with cd(remote_work_dir):
+        run('git pull')
+        run('source venv/bin/activate')
+        run('sh boot_dev.sh')
+
+def push_up_remove(msg):
+    cmt_push(msg)
+    up_remote()
+
 def generate_plist_encoded():
     with lcd(local_work_dir):
         local('source venv/bin/activate')
@@ -28,7 +45,7 @@ def generate_plist_encoded():
 
 
 def server_index():
-    local('curl -k https://0.0.0.0:8800/')
+    local('curl -k http://0.0.0.0:8800/')
 
 
 def client_ssl_call_server():
@@ -43,6 +60,8 @@ def push_files():
     l_path = '../../tmp/1773945_mdm.bleuhotel.com_nginx.zip'
     server_path = os.path.join(remote_tmp_dir, '1773945_mdm.bleuhotel.com_nginx.zip')
     put(l_path, server_path)
+
+
 
 
 
