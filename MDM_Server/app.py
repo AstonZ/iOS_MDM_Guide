@@ -102,9 +102,9 @@ def download_profile():
     return response
 
 @app.route('/signed_profile', methods=['GET'])
-def download_profile():
+def download_signed_profile():
     # os.getcwd()
-    dlog('/download_profile called')
+    dlog('/download_signed_profile called')
     params = None
     if request.json:
         params = request.json
@@ -119,7 +119,7 @@ def download_profile():
         dlog('there is no data')
         params = {'data': 'none'}
     dlog(params)
-    dlog('donwnloading profile')
+    dlog('donwnloading signed profile')
     filename = 'MDM_local_test_signed.mobileconfig'
     response = send_from_directory('../../profile/', filename, as_attachment=True)
     # response.headers["Content-Disposition"] = "attachment; filename={}".format(file_name.encode().decode('latin-1'))

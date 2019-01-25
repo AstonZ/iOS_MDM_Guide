@@ -1,4 +1,4 @@
-#!/root/Liam/Projects/MDM/iOS_MDM_Guide/MDM_Server/venv/bin/python2.7
+#!/Users/AstonWorkMac/Desktop/PAFiles/tech_requirements/MDM/iOS_MDM_Guide/MDM_Server/venv/bin/python
 
 # $Id: rst2odt_prepstyles.py 5839 2009-01-07 19:09:28Z dkuhlman $
 # Author: Dave Kuhlman <dkuhlman@rexx.com>

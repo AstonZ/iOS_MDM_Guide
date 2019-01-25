@@ -1,4 +1,4 @@
-#!/root/Liam/Projects/MDM/iOS_MDM_Guide/MDM_Server/venv/bin/python2.7
+#!/Users/AstonWorkMac/Desktop/PAFiles/tech_requirements/MDM/iOS_MDM_Guide/MDM_Server/venv/bin/python
 
 # $Id: rstpep2html.py 4564 2006-05-21 20:44:42Z wiemann $
 # Author: David Goodger <goodger@python.org>

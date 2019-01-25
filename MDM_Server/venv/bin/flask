@@ -1,4 +1,4 @@
-#!/root/Liam/Projects/MDM/iOS_MDM_Guide/MDM_Server/venv/bin/python2.7
+#!/Users/AstonWorkMac/Desktop/PAFiles/tech_requirements/MDM/iOS_MDM_Guide/MDM_Server/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
