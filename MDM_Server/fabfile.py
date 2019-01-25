@@ -22,9 +22,14 @@ mdm_certificate_from_apple = os.path.join(cer_dir, 'mdm.cer')
 
 def cmt_push(msg):
     with lcd(local_work_dir):
-        local('git add -A .')
-        local('git commit -m "{}"'.format(msg))
-        local('git push origin master')
+        try:
+            local('git add -A .')
+            local('git commit -m "{}"'.format(msg))
+            local('git push origin master')
+        except:
+            print('nothing to commit')
+        finally:
+            print('commit OK')
 
 def up_remote():
     with cd(remote_work_dir):
