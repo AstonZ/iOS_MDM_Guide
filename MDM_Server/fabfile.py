@@ -40,8 +40,8 @@ def client_ssl_call_server():
     local('curl --cert {} --key {} https://0.0.0.0:8800/'.format(pub_key,pri_key))
 
 def push_files():
-    l_path = '../../tmp/upload.zip'
-    server_path = os.path.join(remote_tmp_dir, 'upload.zip')
+    l_path = '../../tmp/1773945_mdm.bleuhotel.com_nginx.zip'
+    server_path = os.path.join(remote_tmp_dir, '1773945_mdm.bleuhotel.com_nginx.zip')
     put(l_path, server_path)
 
 

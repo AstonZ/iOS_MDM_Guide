@@ -209,3 +209,12 @@
 01/24/2019 15:46:32 PM - INFO -  * Restarting with stat
 01/24/2019 15:46:33 PM - WARNING -  * Debugger is active!
 01/24/2019 15:46:33 PM - INFO -  * Debugger PIN: 610-463-221
+01/24/2019 16:22:00 PM - INFO -  * Running on https://0.0.0.0:8800/ (Press CTRL+C to quit)
+01/24/2019 16:22:00 PM - INFO -  * Restarting with stat
+01/24/2019 16:22:01 PM - WARNING -  * Debugger is active!
+01/24/2019 16:22:01 PM - INFO -  * Debugger PIN: 610-463-221
+01/24/2019 16:37:15 PM - INFO -  * Running on http://127.0.0.1:8800/ (Press CTRL+C to quit)
+01/24/2019 16:37:15 PM - INFO -  * Restarting with stat
+01/24/2019 16:37:15 PM - WARNING -  * Debugger is active!
+01/24/2019 16:37:15 PM - INFO -  * Debugger PIN: 610-463-221
+01/24/2019 16:37:35 PM - INFO - 127.0.0.1 - - [24/Jan/2019 16:37:35] "GET / HTTP/1.1" 200 -
